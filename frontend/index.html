@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Binding Vow - Lock a promise to yourself</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@near-wallet-selector/modal-ui@8.9.3/dist/styles.css">
+<script src="https://cdn.jsdelivr.net/npm/near-api-js@4.0.4/dist/near-api-js.min.js"></script>
+</head>
+<body>
+<header>
+  <div class="brand">BINDING&nbsp;VOW</div>
+  <div class="tagline">A promise you cannot negotiate with tomorrow.</div>
+  <div class="walletbox">
+    <span id="walletState">Not connected</span>
+    <button id="btnWallet">Connect wallet</button>
+  </div>
+</header>
+
+<nav>
+  <button data-screen="make" class="active">Make a vow</button>
+  <button data-screen="mine">My vows</button>
+  <button data-screen="proof">Proof</button>
+  <button data-screen="verdict">Verdicts</button>
+</nav>
+
+<main>
+  <!-- MAKE -->
+  <section id="screen-make" class="screen active">
+    <h2>What will you do?</h2>
+    <p class="hint">Write the task in your own words. The swarm's notary turns it into proof terms before any money moves. Vague tasks get rejected here, not after you paid.</p>
+    <textarea id="taskInput" rows="3" placeholder="e.g. Publish the Binding Vow contract repo to GitHub"></textarea>
+    <div class="row">
+      <label>Stake (NEAR) <input id="stakeInput" type="number" min="0.01" step="0.01" value="0.10"></label>
+      <label>Swarm fee (NEAR) <input id="feeInput" type="number" min="0.01" step="0.01" value="0.03"></label>
+      <label>Deadline (hours) <input id="hoursInput" type="number" min="1" step="1" value="24"></label>
+    </div>
+    <div class="row">
+      <label>Cancel window (minutes) <input id="cancelInput" type="number" min="0" step="1" value="10"></label>
+      <label>Judging window (minutes) <input id="judgeWinInput" type="number" min="1" step="1" value="10"></label>
+      <label>If you fail, the stake goes to
+        <select id="forfeitSelect">
+          <option value="">Burn it</option>
+          <option value="custom">A named account</option>
+        </select>
+      </label>
+      <label id="forfeitCustomWrap" class="hidden">Account ID <input id="forfeitCustom" type="text" placeholder="friend.testnet"></label>
+    </div>
+    <button id="btnNotary" class="primary">Ask the notary</button>
+    <div id="notaryOut" class="panel hidden"></div>
+    <button id="btnSeal" class="primary danger hidden">Seal the vow</button>
+    <p id="sealMsg" class="msg"></p>
+  </section>
+
+  <!-- MINE -->
+  <section id="screen-mine" class="screen">
+    <h2>Vows of an account</h2>
+    <div class="row">
+      <label class="grow">Account ID <input id="ownerInput" type="text" value="bindingvow1106.testnet"></label>
+      <button id="btnLoadVows" class="primary">Load from chain</button>
+    </div>
+    <div id="vowList"></div>
+  </section>
+
+  <!-- PROOF -->
+  <section id="screen-proof" class="screen">
+    <h2>Prove you did it</h2>
+    <p class="hint">Pick the file that proves the work. Its SHA-256 is computed here in your browser and committed on chain with the link. The judges recompute it from the link later, so the file at the link must be this exact file.</p>
+    <div class="row">
+      <label class="grow">Vow ID <input id="proofVowId" type="text" placeholder="vow-0"></label>
+    </div>
+    <div class="row">
+      <label class="grow">Proof link (public URL of the file) <input id="proofUri" type="text" placeholder="https://..."></label>
+    </div>
+    <div class="row">
+      <label class="grow">Proof file <input id="proofFile" type="file"></label>
+    </div>
+    <p class="msg">SHA-256: <code id="proofHashOut">pick a file</code></p>
+    <button id="btnSubmitProof" class="primary">Submit proof on chain</button>
+    <p id="proofMsg" class="msg"></p>
+  </section>
+
+  <!-- VERDICT -->
+  <section id="screen-verdict" class="screen">
+    <h2>Verdicts and judge reports</h2>
+    <div class="row">
+      <label class="grow">Vow ID <input id="verdictVowId" type="text" placeholder="vow-3"></label>
+      <button id="btnLoadVerdict" class="primary">Load verdict</button>
+    </div>
+    <div id="verdictOut"></div>
+    <div class="panel">
+      <h3>The three judges, three different rules</h3>
+      <ul class="judges">
+        <li><b>judge1, the Literalist:</b> approves only if the proof file's SHA-256 matches the committed hash exactly.</li>
+        <li><b>judge2, the Formalist:</b> approves if the proof is reachable and a hash was committed; checks the form, not the content.</li>
+        <li><b>judge3, the Skeptic:</b> approves only if the proof is reachable, at least 512 bytes, and the hash matches.</li>
+      </ul>
+      <p class="hint">Judges are paid from the separate verification fee for examining, never for passing. A failed verdict pays them the same. Full evidence reports for the two reference cases, vow-3 (passed) and vow-4 (failed and executed), ship with this page under <code>reports/</code> and are linked from those verdicts.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>Contract: <code id="contractId"></code> on NEAR testnet. The NFT is non-transferable. It always dies: redeemed on success, executed on failure, burned on cancel.</p>
+</footer>
+
+<script src="app.js"></script>
+<script type="module" src="wallet.js"></script>
+</body>
+</html>
