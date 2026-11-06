@@ -1,0 +1,24 @@
+{
+  "judge": "judge1.bindingvow1106.testnet",
+  "persona": "Literalist",
+  "rule": "hash_match must be exactly true",
+  "token_id": "vow-4",
+  "task": "Publish the Binding Vow swarm agent code",
+  "proof_terms": "Proof = public URL loads, SHA-256 of the deliverable committed as proof hash, before deadline",
+  "checker": {
+    "uri": "http://127.0.0.1:8799/proof.txt",
+    "reachable": true,
+    "http_status": 200,
+    "content_type": "text/plain",
+    "bytes": 1074,
+    "sha256": "393e3bbb1f9fe993ed41c359723eacdccefee955a5caddee1184f17fe8126dee",
+    "hash_match": false,
+    "error": null
+  },
+  "decision": "reject",
+  "salt": "9f20c276bcee7790",
+  "commitment": "283930214b3b660ed9dc12eb506d63658b44fa090aad0427635b33acfa1c7ac3",
+  "commit_tx": "ATzL7g3oyooYzhdQGVcEgqnZJZouwQHxVPM9ktfyVams",
+  "reveal_tx": "7xMsPXiY9n5dobHppsQkLYAmSd98D8DWiEcWrTLNYaKq",
+  "at": "2026-11-06T10:10:07.851Z"
+}
