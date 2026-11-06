@@ -59,7 +59,7 @@ Code: (repo URL after push)
 
 - [x] Working prototype on testnet (contract, swarm, frontend live)
 - [x] On-chain evidence both directions (vow-5 redeemed, vow-6 executed)
-- [ ] Public GitHub repo (this workspace pushed)
+- [x] Public GitHub repo: https://github.com/ILKokoron/binding-vow
 - [ ] Demo video recorded from this script
 - [ ] X post published by kokoron (needs his account)
 - [ ] Submission form: tracks NFTs That Do Something + AI Swarms
