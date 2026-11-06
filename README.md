@@ -65,14 +65,14 @@ Frontend: serve `frontend/` statically; it reads the live contract and needs no 
 ## Honest limitations
 
 - Testnet only. The stake in a production version should be a stablecoin so the pain amount does not drift with token price while a vow is locked; the mechanism is unchanged.
-- The swarm is operated by the project for this prototype. The contract already enforces the parts that must not be trusted: escrow separation, commit-reveal, majority, fee-on-work. A production swarm adds open judge registration and reputation scores.
+- This build runs a **reference swarm**: one operator runs the three judge agents to prove the design end to end. It is not a decentralized judge network, and we do not call it one. What the contract guarantees regardless of who operates the agents: votes are accepted only from the registered judge addresses (the `judges()` view lists them on chain), every commit and reveal is signed by that judge's own account, and `finalize` and `execute` are permissionless, so anyone can close the tally. Swapping the reference swarm for independent judge operators changes who runs the agents, not the design. A production swarm adds open judge registration, judge staking with slashing, and reputation scores.
 - Judges verify the proof against the pre-agreed terms, not the quality of the work. Fit, not taste. The notary's job at intake is to make "fit" checkable.
 - Physical-world tasks need a same-day code word in frame to block reused photos; the notary's physical template states this, and automating the code-word check is roadmap work.
 
 ## Roadmap
 
 - **Module 2 of the same engine: human-made certification.** The swarm pointed at the past instead of the future: artists submit work plus process evidence, the swarm examines, and a passing work is minted as a certificate NFT with the open evidence trail attached. Same escrow, same commit-reveal, same rule that pay never equals pass.
-- Judge registration and reputation, stablecoin stakes, code-word verification for physical proofs.
+- Open judge registration with staking and slashing, judge reputation, stablecoin stakes, code-word verification for physical proofs.
 
 ## Tracks
 
