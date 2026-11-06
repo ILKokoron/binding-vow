@@ -1,0 +1,24 @@
+{
+  "judge": "judge2.bindingvow1106.testnet",
+  "persona": "Formalist",
+  "rule": "proof reachable and a proof hash was committed",
+  "token_id": "vow-6",
+  "task": "Deploy the Binding Vow frontend to Vercel",
+  "proof_terms": "Proof = (1) a public URL that loads successfully (repo, deployed page, or contract account), (2) the SHA-256 hash of the main deliverable file or build artifact, submitted as the proof hash, (3) submitted before the deadline. A screenshot alone is not proof.",
+  "checker": {
+    "uri": "https://binding-vow-ilkokorons-projects.vercel.app/",
+    "reachable": true,
+    "http_status": 200,
+    "content_type": "text/html; charset=utf-8",
+    "bytes": 5201,
+    "sha256": "cc169d780c8cc4327d160ccd722ebabae32987c22a30b3342246a2fa2c8215df",
+    "hash_match": false,
+    "error": null
+  },
+  "decision": "approve",
+  "salt": "9bbd34f3b21ba60a",
+  "commitment": "ec747c8281c415ca097a420df910b26479900dbc509fa64a4f4cf4329448bfa3",
+  "commit_tx": "6DATzDbBhHuWNzjPDEmf6ACjkJ7dDCm8nJm6Z1rgE3ZE",
+  "reveal_tx": "AFruwmtmSkPmmZVQLKubpThavj1Bug6ajiDEeFe5ksFH",
+  "at": "2026-11-06T10:20:20.457Z"
+}
