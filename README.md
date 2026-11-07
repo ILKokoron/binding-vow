@@ -77,3 +77,7 @@ Frontend: serve `frontend/` statically; it reads the live contract and needs no 
 ## Tracks
 
 Built for NEAR Hackathon "Build Beyond Boundaries": **NFTs That Do Something** (the NFT is the claim on the escrowed stake and always burns, as redemption or as execution) and **AI Swarms** (a notary plus three independently ruled judge agents doing paid verification work), with **Agent Economy** as a supporting tag (agents earn escrowed fees for examinations, independent of outcomes).
+
+## Disclosure
+
+Binding Vow and Humanmark are two independent entries by the same author in this hackathon (the rules allow up to two projects per person, each disclosing the other). Humanmark is the human-made art certification swarm described in the roadmap above, built as its own project: contract `humanmark.bindingvow1106.testnet`, repo https://github.com/ILKokoron/humanmark.
